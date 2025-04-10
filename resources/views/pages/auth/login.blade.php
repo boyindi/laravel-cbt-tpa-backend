@@ -14,13 +14,18 @@
         </div>
 
         <div class="card-body">
-            <form method="POST" action="#" class="needs-validation" novalidate="">
+            <form method="POST" action="{{route('login')}}" class="needs-validation" novalidate="">
                 <div class="form-group">
                     <label for="email">Email</label>
-                    <input id="email" type="email" class="form-control" name="email" tabindex="1" required autofocus>
+                    <input id="email" type="email" class="form-control @error('email')
+                    is-invalid
+                    @enderror" name="email" tabindex="1"  autofocus>
+                    @error('email')
                     <div class="invalid-feedback">
-                        Please fill in your email
+                        {{ $message }}
                     </div>
+                    @enderror
+
                 </div>
 
                 <div class="form-group">
@@ -47,7 +52,7 @@
         </div>
     </div>
     <div class="text-muted mt-5 text-center">
-        Don't have an account? <a href="auth-register.html">Create One</a>
+        Don't have an account? <a href="{{route('register')}}">Create One</a>
     </div>
 @endsection
 
